@@ -15,14 +15,14 @@ export function Incomes({
     <div>
       <form onSubmit={handleIncomeSubmit}>
         <Input
-          idNameHtmlFor="sourceIncomeInput"
+          idNameHtmlFor="source"//"sourceIncomeInput"
           type="text"
           placeholder="Enter your source.."
           label="Enter Income Source"
           handleChange={handleChange}
         />
         <Input
-          idNameHtmlFor="AmountIncomeInput"
+          idNameHtmlFor="amount"//"AmountIncomeInput"
           type="number"
           placeholder="Enter the amount.."
           label="Enter Amount of Income"

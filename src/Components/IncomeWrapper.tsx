@@ -21,7 +21,8 @@ export function IncomeWrapper() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setIncome({ ...income, [name]: value });
+    console.log("targrt",e.target);
+    setIncome({ ...income, [name]: value});
   };
 
   const handleChangeDate = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -37,11 +38,7 @@ export function IncomeWrapper() {
     }
   };
 
-  console.log("print value date ", income.date);
-  console.log("print value amount ", income.amount);
-  console.log("print value income ", income.source);
   
-  console.log("print value income ", income);
 
   const handleIncomeSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -54,11 +51,44 @@ export function IncomeWrapper() {
 
   };
 
+  
+  console.log("print value date ", income.date);
+  console.log("print value amount ", income.amount);
+  console.log("print value source ", income.source);
+  
+  console.log("print value date ", income);
+  console.log("print value source ", incomes);
+
   return (
-    <Incomes
-      handleChange={handleChange}
-      handleIncomeSubmit={handleIncomeSubmit}
-      handleChangeDate={handleChangeDate}
-    />
+    <div>
+      <Incomes
+        handleChange={handleChange}
+        handleIncomeSubmit={handleIncomeSubmit}
+        handleChangeDate={handleChangeDate}
+      />
+
+      <ul>
+        {incomes.map(income =>{return(
+            <li>
+              <p>
+                {
+                  income.source
+                }
+              </p>
+              <p>
+                {
+                  income.amount
+                }
+              </p>
+              <p>
+                {
+                  income.date
+                }
+              </p>
+            </li>
+          )})}
+      </ul>
+    </div>
+    
   );
 }

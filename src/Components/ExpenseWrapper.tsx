@@ -8,36 +8,71 @@ import React, { useState } from "react";
 // import { Buttons } from "./Buttons";
 import { Expenses } from "./Expenses";
 
-type Expense = { source: string; amount: number; date: Date }; //  date :Date ××   date : string > to use toLocalDateString()
-
-const handleExpenseSourceChange = (
-  e: React.ChangeEvent<HTMLInputElement>
-) => {};
-
-const handleExpenseAmountChange = (
-  e: React.ChangeEvent<HTMLInputElement>
-) => {};
-
-const handleExpenseDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {};
-
-const handleExpenseSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  e.preventDefault();
-};
+type Expense = { source: string; amount: number; date: string }; //  date :Date ××   date : string > to use toLocalDateString()
 
 export function ExpenseWrapper() {
-  const [expenses, setExpenses] = useState<Expense[]>([]); // { source: "", amount: 12 , date: new Date().toLocalDateString(),} objects
-  const [expense, setexpense] = useState({
+  const [expenses, setExpenses] = useState<Expense[]>([]); // { source: "", amount: 12 , date:""// new Date().toLocalDateString(),} objects
+  const [expense, setExpense] = useState({
     source: "",
     amount: 0,
-     date: new Date().toLocaleDateString(),
+    date: "",
   });
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    console.log("targrt", e.target);
+    setExpense({ ...expense, [name]: value });
+  };
+
+  const handleChangeDate = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    if (value) {
+      setExpense({
+        ...expense,
+        date: value,
+      });
+    }
+  };
+
+  const handleExpenseSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const newExpense = {
+      source: expense.source,
+      amount: expense.amount,
+      date: expense.date,
+    };
+    setExpenses([...expenses, newExpense]);
+  };
+
   return (
-    <Expenses
-      handleExpenseSourceChange={handleExpenseSourceChange}
-      handleExpenseAmountChange={handleExpenseAmountChange}
-      handleExpenseDateChange={handleExpenseDateChange}
-      handleExpenseSubmit={handleExpenseSubmit}
-    />
+    <div>
+      <Expenses
+        handleChange={handleChange}
+        handleChangeDate={handleChangeDate}
+        handleExpenseSubmit={handleExpenseSubmit}
+      />
+
+<ul>
+        {expenses.map(expense =>{return(
+            <li>
+              <p>
+                {
+                  expense.source
+                }
+              </p>
+              <p>
+                {
+                  expense.amount
+                }
+              </p>
+              <p>
+                {
+                  expense.date
+                }
+              </p>
+            </li>
+          )})}
+      </ul>
+    </div>
   );
 }

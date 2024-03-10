@@ -2,40 +2,38 @@ import { Buttons } from "./Buttons";
 import { Input } from "./Input";
 
 type ExpenseProps = {
-  handleExpenseSourceChange: React.ChangeEventHandler<HTMLInputElement>;
-  handleExpenseAmountChange: React.ChangeEventHandler<HTMLInputElement>;
-  handleExpenseDateChange: React.ChangeEventHandler<HTMLInputElement>;
+  handleChange: React.ChangeEventHandler<HTMLInputElement>;
+  handleChangeDate: React.ChangeEventHandler<HTMLInputElement>;
   handleExpenseSubmit: React.FormEventHandler<HTMLFormElement>;
 };
 export function Expenses({
-  handleExpenseSourceChange,
-  handleExpenseAmountChange,
-  handleExpenseDateChange,
+  handleChange,
+  handleChangeDate,
   handleExpenseSubmit,
 }: ExpenseProps) {
   return (
     <div>
       <form onSubmit={handleExpenseSubmit}>
         <Input
-          idNameHtmlFor="sourceExpenseInput"
+          idNameHtmlFor="source"//"sourceExpenseInput"
           type="text"
           placeholder="Enter your source.."
           label="Enter Expense Source"
-          handleChange={handleExpenseSourceChange}
+          handleChange={handleChange}
         />
         <Input
-          idNameHtmlFor="AmountExpenseInput"
+          idNameHtmlFor="amount"//"AmountExpenseInput"
           type="number"
           placeholder="Enter the amount.."
           label="Enter Amount of Expense"
-          handleChange={handleExpenseAmountChange}
+          handleChange={handleChange}
         />
         <Input
           idNameHtmlFor="dateExpenseInput"
           type="Date"
           placeholder=""
           label="Enter Date"
-          handleChange={handleExpenseDateChange}
+          handleChange={handleChangeDate}
         />
         <Buttons label="Add expense" />
       </form>
