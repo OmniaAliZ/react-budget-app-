@@ -4,9 +4,14 @@ import { Buttons } from './Buttons';
 
 // rfc for auto
 
-type SavingProps = {
-  handleChange: React.ChangeEventHandler<HTMLInputElement>;
-  handleSavingSubmit: React.FormEventHandler<HTMLFormElement>;}
+  type SavingProps = {
+    handleChange: (event: React.ChangeEvent) => void;
+    handleSavingSubmit: (event: React.FormEvent) => void;
+    };
+
+    // type SavingProps = {
+    //   handleChange: React.ChangeEventHandler<HTMLInputElement>;
+    //   handleSavingSubmit: React.FormEventHandler<HTMLFormElement>;}
 
 
 export default function Saving({

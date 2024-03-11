@@ -1,18 +1,24 @@
-// move everything about income from app to here
-
-// in app >>>> have wrappers only (better)
-
 // i can use <>   </>    to wrap all in return (return only RETURN one element)
 import React, { useState } from "react";
+import { Form } from "./Form";
+import { List, ListItem } from "@mui/material";
+import ListItems from "./ListItems";
 
-// import { Buttons } from "./Buttons";
-import { Expenses } from "./Expenses";
+export type Expense = {
+  id: number;
+  source: string;
+  amount: number;
+  date: string;
+}; //  date :Date ××   date : string > to use toLocalDateString()
 
-type Expense = { source: string; amount: number; date: string }; //  date :Date ××   date : string > to use toLocalDateString()
+type ExpenseWrapperProps = {
+  expenses: Expense[];
+  setExpenses: (key: Expense[]) => void;
+};
 
-export function ExpenseWrapper() {
-  const [expenses, setExpenses] = useState<Expense[]>([]); // { source: "", amount: 12 , date:""// new Date().toLocalDateString(),} objects
+export function ExpenseWrapper({ expenses, setExpenses }: ExpenseWrapperProps) {
   const [expense, setExpense] = useState({
+    id: +new Date(),
     source: "",
     amount: 0,
     date: "",
@@ -37,6 +43,7 @@ export function ExpenseWrapper() {
   const handleExpenseSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newExpense = {
+      id: +new Date(),
       source: expense.source,
       amount: expense.amount,
       date: expense.date,
@@ -46,33 +53,11 @@ export function ExpenseWrapper() {
 
   return (
     <div>
-      <Expenses
+      <Form
         handleChange={handleChange}
         handleChangeDate={handleChangeDate}
-        handleExpenseSubmit={handleExpenseSubmit}
+        handleSubmit={handleExpenseSubmit}
       />
-
-<ul>
-        {expenses.map(expense =>{return(
-            <li>
-              <p>
-                {
-                  expense.source
-                }
-              </p>
-              <p>
-                {
-                  expense.amount
-                }
-              </p>
-              <p>
-                {
-                  expense.date
-                }
-              </p>
-            </li>
-          )})}
-      </ul>
     </div>
   );
 }

@@ -6,14 +6,24 @@
 import React, { useState } from "react";
 
 // import { Buttons } from "./Buttons";
-import { Incomes } from "./Incomes";
+import { Form } from "./Form";
+import ListItems from "./ListItems";
 // import { log } from "console";
 
-type Income = { source: string; amount: number; date: null | string }; //  date :Date ××   date : string > to use toLocalDateString()
+export type Income = {
+  id: number;
+  source: string;
+  amount: number;
+  date: null | string;
+}; //  date :Date ××   date : string > to use toLocalDateString()
 
-export function IncomeWrapper() {
-  const [incomes, setIncomes] = useState<Income[]>([]); // { source: "", amount: 12 , date: new Date().toLocalDateString(),} objects
+type IncomeWrapperProps = {
+  incomes: Income[];
+  setIncomes: (key: Income[]) => void;
+};
+export function IncomeWrapper({ incomes, setIncomes }: IncomeWrapperProps) {
   const [income, setIncome] = useState<Income>({
+    id: +new Date(),
     source: "",
     amount: 0, // Yazan : amount:''
     date: "",
@@ -21,8 +31,8 @@ export function IncomeWrapper() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    console.log("targrt",e.target);
-    setIncome({ ...income, [name]: value});
+    console.log("targrt", e.target);
+    setIncome({ ...income, [name]: value });
   };
 
   const handleChangeDate = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,57 +48,31 @@ export function IncomeWrapper() {
     }
   };
 
-  
-
   const handleIncomeSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newIncome = {
+      id: +new Date(),
       source: income.source,
       amount: income.amount,
       date: income.date,
     };
     setIncomes([...incomes, newIncome]);
-
   };
 
-  
   console.log("print value date ", income.date);
   console.log("print value amount ", income.amount);
   console.log("print value source ", income.source);
-  
+
   console.log("print value date ", income);
   console.log("print value source ", incomes);
 
   return (
-    <div>
-      <Incomes
+    <div className="wrapper">
+      <Form
         handleChange={handleChange}
-        handleIncomeSubmit={handleIncomeSubmit}
+        handleSubmit={handleIncomeSubmit}
         handleChangeDate={handleChangeDate}
       />
-
-      <ul>
-        {incomes.map(income =>{return(
-            <li>
-              <p>
-                {
-                  income.source
-                }
-              </p>
-              <p>
-                {
-                  income.amount
-                }
-              </p>
-              <p>
-                {
-                  income.date
-                }
-              </p>
-            </li>
-          )})}
-      </ul>
     </div>
-    
   );
 }
