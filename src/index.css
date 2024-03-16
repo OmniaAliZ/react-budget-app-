@@ -1,34 +1,114 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /* background-color: rgb(32, 35, 46); */
-  background-color: #272640;
+  /* background-color: #272640; */
+  background-color: #22223b;
 }
-h1{
+* {
+  color: #9a8c98;
+}
+h1 {
   text-align: center;
 }
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
-.input{
-  width:200px;
-  margin: 100px;
+.saving{
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+  justify-content: space-around;
+  /* align-content: stretch;
+  align-items: stretch; */
 }
-
-.form{
+.info{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.list {
   display: flex;
   justify-content: space-around;
-  /* align-content: space-between; */
+  align-items: baseline;
+  text-align: center;
+  background-color: #f2e9e4;
+  border-radius: 5%;
+  margin: 1%;
+  padding: 0.2%;
 }
-*{
-  color: white;
+.input {
+  width: 200px;
+  margin: 100px;
+  scale: 1.2;
 }
-.ListContainer{
-  display:flex;
+.balance {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background-color: #f2e9e4;
+  border-radius: 5%;
+  margin: 1%;
+  padding: 0.2%;
+}
+.saving-container {
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+  background-color: #f2e9e4;
+  border-radius: 5%;
+  margin: 1%;
+  padding: 1%;
+}
+.inputs{
+flex-direction: column;
+}
+
+.tabs-container {
+  background-color: #f2e9e4;
+  border-radius: 5%;
+  margin: 1%;
+  padding: 1%;
+}
+.progress {
+  background-color: #f2e9e4;
+  border-radius: 5%;
+  margin: 1%;
+  padding: 1%;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.app {
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+}
+.saving-inputs {
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.ListContainer {
+  display: flex;
+}
+.Containers {
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
 }

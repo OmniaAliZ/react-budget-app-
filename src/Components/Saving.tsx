@@ -5,38 +5,26 @@ import { Buttons } from './Buttons';
 // rfc for auto
 
   type SavingProps = {
-    handleChange: (event: React.ChangeEvent) => void;
-    handleSavingSubmit: (event: React.FormEvent) => void;
+    // handleChange: (event: React.ChangeEvent) => void;
+    // handleSubmit: (event: React.FormEvent) => void;
+  handleChange: React.ChangeEventHandler<HTMLInputElement| HTMLTextAreaElement>;
+  handleSubmit: React.FormEventHandler<HTMLFormElement>;
     };
-
-    // type SavingProps = {
-    //   handleChange: React.ChangeEventHandler<HTMLInputElement>;
-    //   handleSavingSubmit: React.FormEventHandler<HTMLFormElement>;}
 
 
 export default function Saving({
   handleChange,
-  handleSavingSubmit,}:SavingProps) {
+  handleSubmit,}:SavingProps) {
   return (
     <div>
-      <form onSubmit={handleSavingSubmit}>
-      <Input idNameHtmlFor="setTargetInput"
+      <form className="saving-inputs" onSubmit={handleSubmit}>
+      <Input idNameHtmlFor="target"
             type="number"
-            placeholder="Set your target.."
-            label="Set Target"
+            placeholder="..."
+            label="Set Target  "
             handleChange={handleChange}/>
           <Buttons label="Reset" />
       </form>
-
-      <span>
-        Current Saving : 
-      </span>
-      <span>
-        Target : 
-      </span>
-      <span>
-        Progress : 
-      </span>
     </div>
 
   )

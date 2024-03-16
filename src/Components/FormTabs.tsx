@@ -7,39 +7,41 @@ import TabPanel from "@mui/lab/TabPanel";
 import { Income, IncomeWrapper } from "./IncomeWrapper";
 import { Expense, ExpenseWrapper } from "./ExpenseWrapper";
 import { styled } from "@mui/material/styles";
-
-
-// import { createTheme } from '@mui/material/styles';
-
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme({
   palette: {
-    primary: {
-      main: '#283593',
-    },
+    // primary: {
+    //   main: "#283593",
+    // },
     secondary: {
-      main: '#ffff',
+      main: "#4A4E69",
     },
   },
 });
 
 const TabCustom = styled(Tab)({
   color: "#006466",
-  
+
   // "&.Mui-selected": {
   //   color: "red",
-    
+
   // },
 });
-type TabsProps = {
-  incomes:Income[],
-  expenses:Expense[],
-  setIncomes:(key:Income[])=> void,
-  setExpenses:(key:Expense[])=> void,
-}
 
-export default function Tabs({incomes,setIncomes,expenses,setExpenses}:TabsProps) {
+type FormTabsProps = {
+  incomes: Income[];
+  expenses: Expense[];
+  setIncomes: (key: Income[]) => void;
+  setExpenses: (key: Expense[]) => void;
+};
+
+export function FormTabs({
+  incomes,
+  setIncomes,
+  expenses,
+  setExpenses,
+}: FormTabsProps) {
   const [value, setValue] = React.useState("1");
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
@@ -47,15 +49,20 @@ export default function Tabs({incomes,setIncomes,expenses,setExpenses}:TabsProps
   };
 
   return (
-    <>
+    <div className="tabs-container">
       <Box sx={{ width: "100%", typography: "subtitle2" }}>
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <ThemeProvider theme={theme}>
-            <TabList indicatorColor="secondary" textColor="secondary" onChange={handleChange} aria-label="incomes and expenses tabs">
-              <TabCustom label="Incomes" value="1" />
-              <TabCustom label="Expenses" value="2" />
-            </TabList>
+            <ThemeProvider theme={theme}>
+              <TabList
+                indicatorColor="secondary"
+                textColor="secondary"
+                onChange={handleChange}
+                aria-label="incomes and expenses tabs"
+              >
+                <TabCustom label="Incomes" value="1" />
+                <TabCustom label="Expenses" value="2" />
+              </TabList>
             </ThemeProvider>
           </Box>
           <TabPanel value="1">
@@ -66,6 +73,6 @@ export default function Tabs({incomes,setIncomes,expenses,setExpenses}:TabsProps
           </TabPanel>
         </TabContext>
       </Box>
-    </>
+    </div>
   );
 }

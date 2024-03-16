@@ -4,13 +4,12 @@
 
 // i can use <>   </>    to wrap all in return (return only RETURN one element)
 import React, { useState } from "react";
-
 // import { Buttons } from "./Buttons";
 import { Form } from "./Form";
-import ListItems from "./ListItems";
 // import { log } from "console";
 
 export type Income = {
+  type:string;
   id: number;
   source: string;
   amount: number;
@@ -23,6 +22,7 @@ type IncomeWrapperProps = {
 };
 export function IncomeWrapper({ incomes, setIncomes }: IncomeWrapperProps) {
   const [income, setIncome] = useState<Income>({
+    type:"",
     id: +new Date(),
     source: "",
     amount: 0, // Yazan : amount:''
@@ -31,7 +31,6 @@ export function IncomeWrapper({ incomes, setIncomes }: IncomeWrapperProps) {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    console.log("targrt", e.target);
     setIncome({ ...income, [name]: value });
   };
 
@@ -50,21 +49,19 @@ export function IncomeWrapper({ incomes, setIncomes }: IncomeWrapperProps) {
 
   const handleIncomeSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if(Number(income.amount)>0){
     const newIncome = {
+      type:"income",
       id: +new Date(),
       source: income.source,
-      amount: income.amount,
+      amount: Number(income.amount),
       date: income.date,
     };
-    setIncomes([...incomes, newIncome]);
+    setIncomes([...incomes, newIncome]);}
+    else{
+      alert("You can not add zero/negative amount!");
+    }
   };
-
-  console.log("print value date ", income.date);
-  console.log("print value amount ", income.amount);
-  console.log("print value source ", income.source);
-
-  console.log("print value date ", income);
-  console.log("print value source ", incomes);
 
   return (
     <div className="wrapper">

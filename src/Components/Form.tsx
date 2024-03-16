@@ -2,9 +2,13 @@ import { Buttons } from "./Buttons";
 import { Input } from "./Input";
 
 type IncomesProps = {
-  handleChange: React.ChangeEventHandler<HTMLInputElement| HTMLTextAreaElement>;
+  handleChange: React.ChangeEventHandler<
+    HTMLInputElement | HTMLTextAreaElement
+  >;
   handleSubmit: React.FormEventHandler<HTMLFormElement>;
-  handleChangeDate: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>;
+  handleChangeDate: React.ChangeEventHandler<
+    HTMLInputElement | HTMLTextAreaElement
+  >;
 };
 export function Form({
   handleChange,
@@ -15,14 +19,14 @@ export function Form({
     <div>
       <form className="form" onSubmit={handleSubmit}>
         <Input
-          idNameHtmlFor="source"//"sourceIncomeInput"
+          idNameHtmlFor="source" //"sourceIncomeInput"
           type="text"
           placeholder="....."
           label="Enter Source  "
           handleChange={handleChange}
         />
         <Input
-          idNameHtmlFor="amount"//"AmountIncomeInput"
+          idNameHtmlFor="amount" //"AmountIncomeInput"
           type="number"
           placeholder="....."
           label="Enter Amount  "
